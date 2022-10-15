@@ -5,25 +5,31 @@
 #include <util/hotloader.h>
 #include <util/memory.h>
 
+#include "../hdr/core.h"
+
 /*  Using util Memory <util/memory>
  *
- *  void    MemoryEnableTracking(const bool& track);                                        <- Enable/Disable Tracking
- *  void*   MemoryMalloc(size_t bytes, const char* file, const int& line);                  <- Allocate memory
- *  void*   MemoryRealloc(void* buffer, size_t bytes, const char* file, const int& line);   <- Reallocate memory
- *  void*   MemoryRegister(void* buffer, const char* file, const int& line);                <- add pointers to track
- *  void*   MemoryDeRegister(void* buffer);                                                 <- remove pointers from tacking
- *  void    MemoryZero(void* buffer, size_t bytes);                                         <- zero memory
- *  void    MemoryFree(void* buffer);                                                       <- delete memory and remove from tracking
- *  bool    MemoryPrintStack();                                                             <- prints tracked memory addresses
+ *  DEFINE                  FUNCTION
+ *                          void    MemoryEnableTracking(const bool& track);                                        <- Enable/Disable Tracking
+ *  Malloc(bytes)           void*   MemoryMalloc(size_t bytes, const char* file, const int& line);                  <- Allocate memory
+ *  Realloca(buffer, bytes) void*   MemoryRealloc(void* buffer, size_t bytes, const char* file, const int& line);   <- Reallocate memory
+ *  MemReg(buffer)          void*   MemoryRegister(void* buffer, const char* file, const int& line);                <- add pointers to track
+ *  MemDeReg(buffer)        void*   MemoryDeRegister(void* buffer);                                                 <- remove pointers from tacking
+ *  MemZero(buffer, bytes)  void    MemoryZero(void* buffer, size_t bytes);                                         <- zero memory
+ *  Free(buffer)            void    MemoryFree(void* buffer);                                                       <- delete memory and remove from tracking
+ *                          bool    MemoryPrintStack();                                                             <- prints tracked memory addresses
  */
 
 int main(int argv, const char** argc)
 {
-    CoreInit();
-    Window::Init();
-    LOG_INFO({C_HiLi("%s", ConsoleOutPutColor::Purple)}, "LOG TEST: %s", "Hello World!");
+    {
+        CoreInit();
+        Window::Init();
+    }
 
     MemoryEnableTracking(true);
+
+    FUNC_TEST
 
     Window::Window window = Window::WindowBuilder
             .centerWindowOnScreen()

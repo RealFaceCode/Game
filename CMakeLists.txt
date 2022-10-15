@@ -15,7 +15,7 @@ include_directories("vendor/Playground/PlaygroundLib/vendor/glm/glm")
 include_directories("vendor/Playground/PlaygroundLib/vendor/fhandle")
 include_directories("vendor/Playground/PlaygroundLib/vendor/stb")
 
-add_executable(Game ${SOURCE_FILES} ${GLAD_FILES} ${FHANDLE_FILES} src/main.cpp)
+add_executable(Game ${SOURCE_FILES} ${GLAD_FILES} ${FHANDLE_FILES} src/main.cpp hdr/core.h src/core.cpp)
 
 add_subdirectory(vendor/Playground/PlaygroundLib)
 target_link_libraries(Game PlaygroundLib)
